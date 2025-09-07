@@ -15,7 +15,7 @@ FROM tomcat:11.0-jdk21-temurin
 # Xóa apps mặc định
 RUN rm -rf /usr/local/tomcat/webapps/*
 # Deploy app thành ROOT để truy cập tại "/"
-COPY --from=build /app/target/web3-1.0-SNAPSHOT.war /usr/local/tomcat/webapps/ROOT.war
+COPY --from=build /app/target/download-app-1.0.0.war /usr/local/tomcat/webapps/ROOT.war
 
 EXPOSE 8080
 CMD ["catalina.sh", "run"]
