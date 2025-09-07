@@ -5,38 +5,27 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>vn.edu.hcmute.fit</groupId>
-  <artifactId>web3</artifactId>
-  <version>1.0-SNAPSHOT</version>
-  <name>web3</name>
+  <artifactId>download-app</artifactId>
+  <version>1.0.0</version>
   <packaging>war</packaging>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.release>17</maven.compiler.release>
-    <servlet.version>6.0.0</servlet.version> <!-- Giảm xuống 6.0.0 cho tương thích Tomcat 11 ổn định -->
-    <jsp.version>3.1.1</jsp.version> <!-- Thêm JSP API version -->
+    <servlet.version>6.1.0</servlet.version>
     <jstl.version>3.0.1</jstl.version>
-    <junit.version>5.10.2</junit.version>
   </properties>
 
   <dependencies>
-    <!-- Servlet API cho Tomcat 11 (Jakarta EE 10) -->
+    <!-- Servlet API (Tomcat 11 cung cấp, để provided) -->
     <dependency>
       <groupId>jakarta.servlet</groupId>
       <artifactId>jakarta.servlet-api</artifactId>
       <version>${servlet.version}</version>
-      <scope>provided</scope> <!-- Tomcat cung cấp, không đóng gói vào WAR -->
-    </dependency>
-
-    <!-- JSP API cho Tomcat 11 -->
-    <dependency>
-      <groupId>jakarta.servlet.jsp</groupId>
-      <artifactId>jakarta.servlet.jsp-api</artifactId>
-      <version>${jsp.version}</version>
       <scope>provided</scope>
     </dependency>
 
-    <!-- JSTL API và Implementation cho taglib trong JSP (fix lỗi URI http://jakarta/tags/standard-3.0) -->
+    <!-- JSTL Jakarta 3.x: c:out, c:if, c:forEach, fn:* -->
     <dependency>
       <groupId>jakarta.servlet.jsp.jstl</groupId>
       <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
@@ -47,26 +36,10 @@
       <artifactId>jakarta.servlet.jsp.jstl</artifactId>
       <version>${jstl.version}</version>
     </dependency>
-
-    <!-- JUnit 5 cho test (tuỳ chọn, chỉ dùng khi test) -->
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-api</artifactId>
-      <version>${junit.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-engine</artifactId>
-      <version>${junit.version}</version>
-      <scope>test</scope>
-    </dependency>
   </dependencies>
 
   <build>
-    <finalName>web3</finalName> <!-- Tên WAR file sau build: web3.war -->
     <plugins>
-      <!-- Maven Compiler Plugin: Biên dịch Java 17 -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -75,25 +48,12 @@
           <release>${maven.compiler.release}</release>
         </configuration>
       </plugin>
-
-      <!-- Maven WAR Plugin: Đóng gói WAR từ webapp, không bắt buộc web.xml -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
         <version>3.4.0</version>
         <configuration>
-          <failOnMissingWebXml>false</failOnMissingWebXml> <!-- Cho phép không có web.xml nếu dùng annotation -->
-          <warSourceDirectory>src/main/webapp</warSourceDirectory> <!-- Đường dẫn webapp -->
-        </configuration>
-      </plugin>
-
-      <!-- Maven Surefire Plugin: Chạy JUnit test (tuỳ chọn) -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.2.5</version>
-        <configuration>
-          <useModulePath>false</useModulePath>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
         </configuration>
       </plugin>
     </plugins>
