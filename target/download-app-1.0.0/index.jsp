@@ -1,76 +1,32 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c"  uri="https://jakarta.ee/taglibs/standard-3.0" %>
-<%@ taglib prefix="fn" uri="https://jakarta.ee/taglibs/standard/functions-3.0" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <title>Murach's Java Servlets and JSP</title>
-  <link rel="stylesheet" href="styles/main.css" type="text/css"/>
+    <meta charset="UTF-8">
+    <title>🎶 Trang chủ</title>
+    <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<h1>CD list</h1>
+<div class="container">
+    <h1>🎶 Ứng dụng tải nhạc</h1>
 
-<!-- (bài 9-1) Chỉ hiển thị welcome nếu cookie firstName tồn tại và không chứa 'null' -->
-<c:if test="${not empty cookie.firstName.value and not fn:contains(cookie.firstName.value, 'null')}">
-  <p>Welcome, <c:out value='${cookie.firstName.value}'/>!</p>
-</c:if>
+    <!-- Hiển thị thông điệp chào mừng nếu có cookie firstName -->
+    <c:choose>
+        <c:when test="${not empty cookie.firstName.value}">
+            <p>Xin chào <strong><c:out value="${cookie.firstName.value}" /></strong>! Rất vui được gặp lại bạn.</p>
+        </c:when>
+        <c:otherwise>
+            <p>Chào mừng bạn đến với ứng dụng tải nhạc. Vui lòng <a href="register.jsp">đăng ký</a> để bắt đầu.</p>
+        </c:otherwise>
+    </c:choose>
 
-<table>
-  <tr><th>Description</th><th class="right">Price</th><th>&nbsp;</th></tr>
-
-  <tr>
-    <td>86 (the band) - True Life Songs and Pictures</td>
-    <td class="right">$14.95</td>
-    <td>
-      <form action="cart" method="post">
-        <input type="hidden" name="action" value="cart">
-        <input type="hidden" name="productCode" value="8601">
-        <input type="hidden" name="quantity" value="1">
-        <input type="submit" value="Add To Cart">
-      </form>
-    </td>
-  </tr>
-
-  <tr>
-    <td>Paddlefoot - The First CD</td>
-    <td class="right">$12.95</td>
-    <td>
-      <form action="cart" method="post">
-        <input type="hidden" name="action" value="cart">
-        <input type="hidden" name="productCode" value="pf01">
-        <input type="hidden" name="quantity" value="1">
-        <input type="submit" value="Add To Cart">
-      </form>
-    </td>
-  </tr>
-
-  <tr>
-    <td>Paddlefoot - The Second CD</td>
-    <td class="right">$14.95</td>
-    <td>
-      <form action="cart" method="post">
-        <input type="hidden" name="action" value="cart">
-        <input type="hidden" name="productCode" value="pf02">
-        <input type="hidden" name="quantity" value="1">
-        <input type="submit" value="Add To Cart">
-      </form>
-    </td>
-  </tr>
-
-  <tr>
-    <td>Joe Rut - Genuine Wood Grained Finish</td>
-    <td class="right">$14.95</td>
-    <td>
-      <form action="cart" method="post">
-        <input type="hidden" name="action" value="cart">
-        <input type="hidden" name="productCode" value="jr01">
-        <input type="hidden" name="quantity" value="1">
-        <input type="submit" value="Add To Cart">
-      </form>
-    </td>
-  </tr>
-</table>
+    <!-- Liên kết đến các trang khác -->
+    <div class="links">
+        <a href="view_cookies.jsp">🔍 Xem thông tin từ Cookie</a>
+        <a href="products">🎵 Xem danh sách Album</a>
+    </div>
+</div>
 </body>
 </html>
