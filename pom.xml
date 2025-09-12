@@ -4,11 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>vn.edu.hcmute.fit</groupId>
+  <groupId>van.minh</groupId>
   <artifactId>download-app</artifactId>
   <version>1.0.0</version>
   <packaging>war</packaging>
-  <name>download-app</name>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -18,7 +17,7 @@
   </properties>
 
   <dependencies>
-    <!-- Servlet API (được cung cấp bởi Tomcat 11) -->
+    <!-- Servlet API do Tomcat cung cấp -->
     <dependency>
       <groupId>jakarta.servlet</groupId>
       <artifactId>jakarta.servlet-api</artifactId>
@@ -26,7 +25,7 @@
       <scope>provided</scope>
     </dependency>
 
-    <!-- JSTL Jakarta 3.x (bắt buộc để dùng <c:...> và fn:... trong JSP) -->
+    <!-- JSTL Jakarta 3.x -->
     <dependency>
       <groupId>jakarta.servlet.jsp.jstl</groupId>
       <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
@@ -41,7 +40,6 @@
 
   <build>
     <plugins>
-      <!-- Biên dịch Java 17 -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -50,8 +48,6 @@
           <release>${maven.compiler.release}</release>
         </configuration>
       </plugin>
-
-      <!-- Đóng gói WAR; Jakarta EE 10 không bắt buộc web.xml -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
