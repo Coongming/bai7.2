@@ -1,52 +1,108 @@
 package van.minh;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/download")
 public class DownloadServlet extends HttpServlet {
 
-    @Override
-    protected void doPost(HttpServletRequest request,
-                          HttpServletResponse response)
-            throws ServletException, IOException {
+  @Override
+  protected void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
 
-        request.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html; charset=UTF-8");
+    String action = request.getParameter("action");
+    if (action == null) action = "viewAlbums";
 
-        String name = request.getParameter("name");
-        String email = request.getParameter("email");
-        String productCode = request.getParameter("productCode");
+    String url = "/index.jsp";
+    if ("viewAlbums".equals(action)) {
+      url = "/index.jsp";
+    } else if ("checkUser".equals(action)) {
+      url = checkUser(request, response);
+    }
 
-        try (PrintWriter out = response.getWriter()) {
-            out.println("<!doctype html>");
-            out.println("<html><head><meta charset='utf-8'><title>Download</title></head><body>");
-            out.println("<h2>Cảm ơn " + safe(name) + " đã tải album " + safe(productCode) + "!</h2>");
-            out.println("<p>Thông tin đã được gửi đến email: " + safe(email) + "</p>");
-            out.println("<p><a href='" + request.getContextPath() + "/index.jsp'>Quay lại</a></p>");
-            out.println("</body></html>");
+    getServletContext().getRequestDispatcher(url).forward(request, response);
+  }
+
+  @Override
+  protected void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+
+    String action = request.getParameter("action");
+    String url = "/index.jsp";
+    if ("registerUser".equals(action)) {
+      url = registerUser(request, response);
+    }
+    getServletContext().getRequestDispatcher(url).forward(request, response);
+  }
+
+  private String checkUser(HttpServletRequest request, HttpServletResponse response) {
+    String productCode = request.getParameter("productCode");
+    HttpSession session = request.getSession();
+    session.setAttribute("productCode", productCode);
+
+    User user = (User) session.getAttribute("user");
+    String url;
+
+    if (user == null) {
+      // đọc cookie userEmail nếu có
+      String emailCookie = null;
+      Cookie[] cookies = request.getCookies();
+      if (cookies != null) {
+        for (Cookie c : cookies) {
+          if ("userEmail".equals(c.getName())) {
+            emailCookie = c.getValue();
+            break;
+          }
         }
+      }
+      if (emailCookie == null || emailCookie.isEmpty()) {
+        url = "/register.jsp";
+      } else {
+        // nạp User từ file
+        String path = getServletContext().getRealPath("/WEB-INF/EmailList.txt");
+        user = UserIO.getUser(emailCookie, path);
+        session.setAttribute("user", user);
+        url = "/" + productCode + "_download.jsp";
+      }
+    } else {
+      url = "/" + productCode + "_download.jsp";
     }
+    return url;
+  }
 
-    // Nếu người dùng gọi GET, chuyển về POST cho tiện
-    @Override
-    protected void doGet(HttpServletRequest request,
-                         HttpServletResponse response)
-            throws ServletException, IOException {
-        doPost(request, response);
-    }
+  private String registerUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    String email = request.getParameter("email");
+    String fn = request.getParameter("firstName");
+    String ln = request.getParameter("lastName");
 
-    // Escape đơn giản để tránh HTML injection
-    private String safe(String s) {
-        if (s == null) return "";
-        return s.replace("&", "&amp;")
-                .replace("<", "&lt;")
-                .replace(">", "&gt;");
-    }
+    User user = new User();
+    user.setEmail(email);
+    user.setFirstName(fn);
+    user.setLastName(ln);
+
+    // lưu file “giả”
+    String path = getServletContext().getRealPath("/WEB-INF/EmailList.txt");
+    UserIO.add(user, path);
+
+    // session
+    HttpSession session = request.getSession();
+    session.setAttribute("user", user);
+
+    // COOKIE theo đề: tên userEmail, sống 3 năm
+    Cookie cookie = new Cookie("userEmail", email);
+    cookie.setMaxAge(60 * 60 * 24 * 365 * 3);           // 3 năm
+    cookie.setHttpOnly(true);
+    cookie.setPath(request.getContextPath().isEmpty() ? "/" : request.getContextPath());
+    response.addCookie(cookie);
+
+    String productCode = (String) session.getAttribute("productCode");
+    return "/" + productCode + "_download.jsp";
+  }
 }
