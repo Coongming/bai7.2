@@ -15,18 +15,28 @@ import murach.util.CookieUtil;
 
 public class DownloadServlet extends HttpServlet {
 
+    private static final String VIEW_ALBUMS_ACTION = "viewAlbums";
+    private static final String CHECK_USER_ACTION = "checkUser";
+    private static final String REGISTER_USER_ACTION = "registerUser";
+    private static final String EMAIL_COOKIE_NAME = "emailCookie";
+    private static final String EMAIL_LIST_PATH = "/WEB-INF/EmailList.txt";
+    private static final String REGISTER_PAGE = "/register.jsp";
+    private static final String INDEX_PAGE = "/index.jsp";
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         String action = request.getParameter("action");
-        if (action == null) action = "viewAlbums";
+        if (action == null) {
+            action = VIEW_ALBUMS_ACTION;
+        }
 
-        String url = "/index.jsp";
-        if ("viewAlbums".equals(action)) {
-            url = "/index.jsp";
-        } else if ("checkUser".equals(action)) {
-            url = checkUser(request, response);
+        String url = INDEX_PAGE;
+        if (VIEW_ALBUMS_ACTION.equals(action)) {
+            url = INDEX_PAGE;
+        } else if (CHECK_USER_ACTION.equals(action)) {
+            url = checkUser(request);
         }
 
         getServletContext().getRequestDispatcher(url).forward(request, response);
@@ -37,14 +47,14 @@ public class DownloadServlet extends HttpServlet {
             throws ServletException, IOException {
 
         String action = request.getParameter("action");
-        String url = "/index.jsp";
-        if ("registerUser".equals(action)) {
+        String url = INDEX_PAGE;
+        if (REGISTER_USER_ACTION.equals(action)) {
             url = registerUser(request, response);
         }
         getServletContext().getRequestDispatcher(url).forward(request, response);
     }
 
-    private String checkUser(HttpServletRequest request, HttpServletResponse response) {
+    private String checkUser(HttpServletRequest request) {
         String productCode = request.getParameter("productCode");
         HttpSession session = request.getSession();
         session.setAttribute("productCode", productCode);
@@ -54,12 +64,13 @@ public class DownloadServlet extends HttpServlet {
 
         if (user == null) {
             Cookie[] cookies = request.getCookies();
-            String email = CookieUtil.getCookieValue(cookies, "emailCookie");
+            String email = CookieUtil.getCookieValue(cookies, EMAIL_COOKIE_NAME);
+
             if (email == null || email.isEmpty()) {
-                url = "/register.jsp";
+                url = REGISTER_PAGE;
             } else {
                 ServletContext sc = getServletContext();
-                String path = sc.getRealPath("/WEB-INF/EmailList.txt");
+                String path = sc.getRealPath(EMAIL_LIST_PATH);
                 user = UserIO.getUser(email, path);
                 session.setAttribute("user", user);
                 url = "/" + productCode + "_download.jsp";
@@ -73,7 +84,7 @@ public class DownloadServlet extends HttpServlet {
     private String registerUser(HttpServletRequest request, HttpServletResponse response) {
         String email = request.getParameter("email");
         String first = request.getParameter("firstName");
-        String last  = request.getParameter("lastName");
+        String last = request.getParameter("lastName");
 
         User user = new User();
         user.setEmail(email);
@@ -81,13 +92,13 @@ public class DownloadServlet extends HttpServlet {
         user.setLastName(last);
 
         ServletContext sc = getServletContext();
-        String path = sc.getRealPath("/WEB-INF/EmailList.txt");
+        String path = sc.getRealPath(EMAIL_LIST_PATH);
         UserIO.add(user, path);
 
         HttpSession session = request.getSession();
         session.setAttribute("user", user);
 
-        Cookie c = new Cookie("emailCookie", email);
+        Cookie c = new Cookie(EMAIL_COOKIE_NAME, email);
         c.setMaxAge(60 * 60 * 24 * 365 * 2); // 2 năm
         c.setPath("/");
         response.addCookie(c);
