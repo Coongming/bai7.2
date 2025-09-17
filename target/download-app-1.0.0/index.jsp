@@ -1,32 +1,33 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<!doctype html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+
+<!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <title>Download registration</title>
-  <link rel="stylesheet" href="styles/main.css">
-  <!-- Toàn bộ chữ đen, kể cả link -->
-  <style> a{ color:#111; } </style>
+    <meta charset="utf-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="styles/main.css" type="text/css"/>
 </head>
 <body>
-  <h1>Download registration</h1>
-  <div class="hr"></div>
 
-  <p>To register for our downloads, enter your name and email address below.</p>
+<h1>List of albums</h1>
 
-  <form class="form-card" action="download" method="post">
-    <input type="hidden" name="action" value="registerUser"/>
+<p>
+<a href="download?action=checkUser&amp;productCode=8601">
+    86 (the band) - True Life Songs and Pictures
+</a><br>
 
-    <label>Email:</label>
-    <input type="email" name="email" value="${user.email}"/>
+<a href="download?action=checkUser&amp;productCode=pf01">
+    Paddlefoot - The First CD
+</a><br>
+<a href="download?action=checkUser&amp;productCode=pf02">
+    Paddlefoot - The Second CD
+</a><br>
 
-    <label>First Name:</label>
-    <input type="text" name="firstName" value="${user.firstName}"/>
+<a href="download?action=checkUser&amp;productCode=jr01">
+    Joe Rut - Genuine Wood Grained Finish
+</a>
+</p>
 
-    <label>Last Name:</label>
-    <input type="text" name="lastName" value="${user.lastName}"/>
-
-    <input type="submit" value="Register"/>
-  </form>
 </body>
 </html>
