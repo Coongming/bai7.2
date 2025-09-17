@@ -99,7 +99,7 @@ public class DownloadServlet extends HttpServlet {
         session.setAttribute("user", user);
 
         Cookie c = new Cookie(EMAIL_COOKIE_NAME, email);
-        c.setMaxAge(60 * 60 * 24 * 365 * 2); // 2 năm
+        c.setMaxAge(-1); //(60 * 60 * 24 * 365 * 2); // 2 năm
         c.setPath("/");
         response.addCookie(c);
 
