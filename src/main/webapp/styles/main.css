@@ -1,194 +1,150 @@
-/* Reset mặc định */
-* {
+/* ===== Reset cơ bản ===== */
+body {
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
-
-/* Toàn bộ trang */
-body {
-    font-family: 'Segoe UI', Tahoma, sans-serif;
-    background-color: #f5f7fa;
+    background-color: #f8fafc;
     color: #333;
-    padding: 40px 20px;
+    line-height: 1.6;
 }
 
-/* Container chính */
+/* ===== Khung container ===== */
 .container {
-    max-width: 800px;
-    margin: 0 auto;
+    width: 80%;
+    margin: 30px auto;
+    padding: 20px 30px;
     background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 12px;
-    padding: 30px 40px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border-radius: 8px;
 }
 
-/* Tiêu đề */
-h1, h2 {
-    text-align: center;
-    color: #2c3e50;
-    margin-bottom: 25px;
+/* ===== Tiêu đề ===== */
+h1 {
+    color: #2563eb;
+    border-bottom: 3px solid #2563eb;
+    padding-bottom: 8px;
+    margin-top: 0;
 }
 
-/* Danh sách album */
-.album-list {
-    list-style: none;
-    padding: 0;
-}
-
-.album-list li {
-    margin: 12px 0;
-    padding: 10px;
-    border-bottom: 1px solid #eee;
-}
-
-.album-list li a {
-    text-decoration: none;
-    color: #0077cc;
-    font-weight: 500;
-    transition: color 0.3s ease;
-}
-
-.album-list li a:hover {
-    color: #005fa3;
-}
-
-/* Form nhập thông tin */
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+h2 {
     margin-top: 20px;
+    font-size: 1.2rem;
+    color: #444;
+}
+
+/* ===== Album list ===== */
+.album-list p {
+    margin: 12px 0;
+    font-size: 1.05rem;
+}
+
+.album-list a {
+    text-decoration: none;
+    color: #2563eb;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.album-list a:hover {
+    color: #1e40af;
+    text-decoration: underline;
+}
+
+/* ===== Form ===== */
+form {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f9fafb;
+    border-radius: 6px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.form-group {
+    margin-bottom: 15px;
 }
 
 label {
+    display: block;
+    margin-bottom: 6px;
     font-weight: bold;
-    color: #444;
+    color: #333;
 }
 
 input[type="text"],
 input[type="email"] {
+    width: 100%;
+    max-width: 350px;
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 15px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1rem;
 }
 
-button[type="submit"] {
-    padding: 12px;
-    background-color: #0077cc;
+input[type="submit"] {
+    background-color: #2563eb;
     color: white;
     border: none;
-    border-radius: 6px;
-    font-size: 16px;
+    padding: 10px 22px;
+    border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-size: 1rem;
+    transition: background-color 0.3s;
 }
 
-button[type="submit"]:hover {
-    background-color: #005fa3;
+input[type="submit"]:hover {
+    background-color: #1e40af;
 }
 
-/* Thông báo xác nhận */
-.confirm-box {
-    text-align: center;
-    background-color: #e6f7ff;
-    border: 1px solid #b3e0ff;
-    border-radius: 10px;
-    padding: 30px;
-    margin-top: 40px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    position: relative;
-}
-
-.confirm-box::before {
-    content: "🎉";
-    font-size: 36px;
-    position: absolute;
-    top: -20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #e6f7ff;
-    padding: 10px;
-    border-radius: 50%;
-    border: 1px solid #b3e0ff;
-}
-
-.confirm-box h2 {
-    font-size: 22px;
-    margin-bottom: 15px;
-    color: #004085;
-}
-
-.confirm-box p {
-    font-size: 16px;
-    color: #0056b3;
-}
-
-/* Bảng danh sách bài hát */
-.download-table {
+/* ===== Bảng có kẻ ô ===== */
+table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
+    margin: 20px 0;
+    font-size: 0.95rem;
+    border: 1px solid #d1d5db; /* viền ngoài */
+    border-radius: 6px;
+    overflow: hidden;
 }
 
-.download-table th,
-.download-table td {
-    border: 1px solid #ccc;
-    padding: 12px 16px;
+th, td {
+    padding: 12px 14px;
     text-align: left;
+    border: 1px solid #d1d5db; /* kẻ ô */
 }
 
-.download-table th {
-    background-color: #f0f0f0;
-    font-weight: bold;
-    color: #555;
+th {
+    background-color: #2563eb;
+    color: #fff;
+    font-weight: 600;
 }
 
-.download-table td a {
-    color: #0077cc;
+tr:nth-child(even) {
+    background-color: #f9fafb;
+}
+
+tr:hover {
+    background-color: #eff6ff;
+}
+
+/* ===== Link chung ===== */
+a {
+    color: #2563eb;
     text-decoration: none;
-    font-weight: 500;
 }
 
-.download-table td a:hover {
+a:hover {
     text-decoration: underline;
 }
 
-/* Liên kết dưới cùng */
-.links {
-    margin-top: 30px;
+/* ===== Thông báo tải xuống ===== */
+.download-message {
+    background-color: #d1fae5;
+    color: #065f46;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 15px 0;
+    border: 1px solid #34d399;
     text-align: center;
-}
-
-.links a {
-    color: #0077cc;
-    text-decoration: none;
-    margin: 0 15px;
-    font-size: 15px;
-}
-
-.links a:hover {
-    text-decoration: underline;
-}
-
-/* Responsive cho thiết bị nhỏ */
-@media (max-width: 600px) {
-    .container {
-        padding: 20px;
-    }
-
-    h1, h2 {
-        font-size: 20px;
-    }
-
-    input, button {
-        font-size: 14px;
-    }
-
-    .download-table th,
-    .download-table td {
-        padding: 10px;
-    }
+    font-weight: bold;
 }
