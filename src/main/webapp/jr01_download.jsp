@@ -12,22 +12,22 @@
 
 <h1>Downloads</h1>
 
-<h2>86 (the band) - True Life Songs and Pictures</h2>
+<h2>Joe Rut - Genuine Wood Grained Finish</h2>
 <table>
 <tr>
     <th>Song title</th>
     <th>Audio Format</th>
 </tr>
 <tr>
-    <td>You Are a Star</td>
+    <td>Wood Grain</td>
     <td>
-        <a href="<c:url value="/musicStore/sound/${productCode}/star.mp3"/>">MP3</a>
+        <a href="<c:url value="/musicStore/sound/${productCode}/Wood_Grain.mp3"/>">MP3</a>
     </td>
 </tr>
 <tr>
-    <td>Don't Make No Difference</td>
+    <td>Rustic Finish</td>
     <td>
-        <a href="<c:url value="/musicStore/sound/${productCode}/no_difference.mp3"/>">
+        <a href="<c:url value="/musicStore/sound/${productCode}/Rustic_Finish.mp3"/>">
         MP3</a>
     </td>
 </tr>

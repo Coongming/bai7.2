@@ -12,22 +12,22 @@
 
 <h1>Downloads</h1>
 
-<h2>86 (the band) - True Life Songs and Pictures</h2>
+<h2>Paddlefoot - The Second CD</h2>
 <table>
 <tr>
     <th>Song title</th>
     <th>Audio Format</th>
 </tr>
 <tr>
-    <td>You Are a Star</td>
+    <td>Neon Dreams</td>
     <td>
-        <a href="<c:url value="/musicStore/sound/${productCode}/star.mp3"/>">MP3</a>
+        <a href="<c:url value="/musicStore/sound/${productCode}/Neon_Dreams.mp3"/>">MP3</a>
     </td>
 </tr>
 <tr>
-    <td>Don't Make No Difference</td>
+    <td>Lost in the City</td>
     <td>
-        <a href="<c:url value="/musicStore/sound/${productCode}/no_difference.mp3"/>">
+        <a href="<c:url value="/musicStore/sound/${productCode}/Lost_in_the_City.mp3"/>">
         MP3</a>
     </td>
 </tr>

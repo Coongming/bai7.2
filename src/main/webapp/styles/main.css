@@ -1,14 +1,19 @@
 /* ===== Reset và Cài đặt cơ bản ===== */
 :root {
-    --primary-color: #2563eb;
-    --primary-dark: #1e40af;
-    --background-light: #f8fafc;
-    --background-subtle: #f9fafb;
-    --text-primary: #111827;
-    --text-secondary: #4b5563;
-    --border-color: #e5e7eb;
+    --primary-color: #28a745; /* Xanh lá cây chính */
+    --primary-dark: #218838;  /* Xanh lá cây đậm hơn */
+    --background-light: #e6ffe6; /* Nền xanh lá cây nhạt */
+    --background-subtle: #f0fff0; /* Nền xanh lá cây phụ */
+    --text-primary: #212529; /* Màu chữ chính */
+    --text-secondary: #495057; /* Màu chữ phụ */
+    --border-color: #a7d9b9; /* Màu viền xanh lá cây */
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --table-header-bg: #28a745; /* Màu nền header bảng */
+    --table-hover-bg: #d4edda; /* Màu nền hover bảng */
+    --download-msg-bg: #d4edda; /* Nền thông báo tải xuống */
+    --download-msg-text: #155724; /* Chữ thông báo tải xuống */
+    --download-msg-border: #28a745; /* Viền thông báo tải xuống */
 }
 
 * {
@@ -28,12 +33,15 @@ body {
 
 /* ===== Khung Container & Layout ===== */
 .container {
-    max-width: 900px;
-    margin: 40px auto;
+    max-width: 900px; /* Giới hạn chiều rộng tối đa */
+    margin: 40px auto; /* Canh giữa container */
     padding: 32px 40px;
     background-color: #fff;
     border-radius: 12px;
     box-shadow: var(--shadow-md);
+    /* Đảm bảo không tràn màn hình nhỏ */
+    width: 90%; 
+    box-sizing: border-box; /* Tính cả padding và border vào width */
 }
 
 /* ===== Typography (Kiểu chữ) ===== */
@@ -72,7 +80,7 @@ a:hover {
     text-decoration: underline;
 }
 
-.button {
+.button, input[type="submit"] { /* Áp dụng cho cả input submit */
     display: inline-block;
     background-color: var(--primary-color);
     color: white;
@@ -84,9 +92,10 @@ a:hover {
     cursor: pointer;
     text-align: center;
     transition: background-color 0.3s ease, transform 0.2s ease;
+    text-decoration: none; /* Đảm bảo không có gạch chân cho button */
 }
 
-.button:hover {
+.button:hover, input[type="submit"]:hover {
     background-color: var(--primary-dark);
     transform: translateY(-2px);
 }
@@ -125,7 +134,7 @@ input[type="text"]:focus,
 input[type="email"]:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+    box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.2); /* Đổi màu shadow xanh lá */
 }
 
 /* ===== Table Styling ===== */
@@ -147,7 +156,7 @@ th, td {
 }
 
 th {
-    background-color: var(--primary-color);
+    background-color: var(--table-header-bg);
     color: #fff;
     font-weight: 600;
     text-transform: uppercase;
@@ -159,17 +168,17 @@ tr:nth-child(even) {
 }
 
 tr:hover {
-    background-color: #f1f5f9;
+    background-color: var(--table-hover-bg);
 }
 
 /* ===== Download Message Box ===== */
 .download-message {
-    background-color: #dcfce7;
-    color: #065f46;
+    background-color: var(--download-msg-bg);
+    color: var(--download-msg-text);
     padding: 18px;
     border-radius: 8px;
     margin: 24px 0;
-    border: 1px solid #34d399;
+    border: 1px solid var(--download-msg-border);
     text-align: center;
     font-weight: 600;
     font-size: 1.1rem;
