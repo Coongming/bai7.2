@@ -1,6 +1,6 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,13 +21,13 @@
 <tr>
     <td>You Are a Star</td>
     <td>
-        <a href="/musicStore/sound/${productCode}/star.mp3">MP3</a>
+        <a href="<c:url value="/musicStore/sound/${productCode}/star.mp3"/>">MP3</a>
     </td>
 </tr>
 <tr>
     <td>Don't Make No Difference</td>
     <td>
-        <a href="/musicStore/sound/${productCode}/no_difference.mp3">
+        <a href="<c:url value="/musicStore/sound/${productCode}/no_difference.mp3"/>">
         MP3</a>
     </td>
 </tr>
@@ -35,4 +35,3 @@
 
 </body>
 </html>
-

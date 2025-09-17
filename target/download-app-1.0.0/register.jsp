@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c"  uri="https://jakarta.ee/taglibs/standard-3.0" %>
-<%@ taglib prefix="fn" uri="https://jakarta.ee/taglibs/standard/functions-3.0" %>
+<%@ taglib prefix="c"  uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 
 <!DOCTYPE html>
 <html>
@@ -16,7 +16,7 @@
 <p>To register for our downloads, enter your name and email
    address below. Then, click on the Submit button.</p>
 
-<form action="download" method="post">
+<form action="<c:url value="/download"/>" method="post">
     <input type="hidden" name="action" value="registerUser">        
     <label class="pad_top">Email:</label>
     <input type="email" name="email" value="${user.email}"><br>
