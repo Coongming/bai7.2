@@ -4,29 +4,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>🎶 Trang chủ</title>
-    <link rel="stylesheet" href="styles.css" />
+    <meta charset="utf-8">
+    <title>Murach's Java Servlets and JSP</title>
+    <link rel="stylesheet" href="styles/main.css" type="text/css"/>
 </head>
 <body>
-<div class="container">
-    <h1>🎶 Ứng dụng tải nhạc</h1>
 
-    <!-- Hiển thị thông điệp chào mừng nếu có cookie firstName -->
-    <c:choose>
-        <c:when test="${not empty cookie.firstName.value}">
-            <p>Xin chào <strong><c:out value="${cookie.firstName.value}" /></strong>! Rất vui được gặp lại bạn.</p>
-        </c:when>
-        <c:otherwise>
-            <p>Chào mừng bạn đến với ứng dụng tải nhạc. Vui lòng <a href="register.jsp">đăng ký</a> để bắt đầu.</p>
-        </c:otherwise>
-    </c:choose>
+<h1>List of albums</h1>
 
-    <!-- Liên kết đến các trang khác -->
-    <div class="links">
-        <a href="view_cookies.jsp">🔍 Xem thông tin từ Cookie</a>
-        <a href="products">🎵 Xem danh sách Album</a>
-    </div>
-</div>
+<p>
+<a href="download?action=checkUser&amp;productCode=8601">
+    86 (the band) - True Life Songs and Pictures
+</a><br>
+
+<a href="download?action=checkUser&amp;productCode=pf01">
+    Paddlefoot - The First CD
+</a><br>
+<a href="download?action=checkUser&amp;productCode=pf02">
+    Paddlefoot - The Second CD
+</a><br>
+
+<a href="download?action=checkUser&amp;productCode=jr01">
+    Joe Rut - Genuine Wood Grained Finish
+</a>
+</p>
+
 </body>
 </html>
