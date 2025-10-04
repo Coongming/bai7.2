@@ -1,4 +1,2 @@
-murach/minh/Product.class
-murach/minh/User.class
-murach/minh/ProductService.class
-murach/minh/DownloadServlet.class
+murach/minh/SQLUtil.class
+murach/minh/SqlGatewayServlet.class

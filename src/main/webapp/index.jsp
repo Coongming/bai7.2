@@ -1,31 +1,31 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Albums</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/main.css">
+    <meta charset="utf-8">
+    <title>Murach's Java Servlets and JSP</title>
+    <link rel="stylesheet" href="styles/main.css" type="text/css"/>
 </head>
 <body>
-<div class="container">
-    <h1>List of albums</h1>
 
-    <div class="album-list">
-        <p><a href="${pageContext.request.contextPath}/download?action=checkUser&productCode=8601">
-            86 (the band) - True Life Songs and Pictures
-        </a></p>
-        <p><a href="${pageContext.request.contextPath}/download?action=checkUser&productCode=pf01">
-            Paddlefoot - The First CD
-        </a></p>
-        <p><a href="${pageContext.request.contextPath}/download?action=checkUser&productCode=pf02">
-            Paddlefoot - The Second CD
-        </a></p>
-        <p><a href="${pageContext.request.contextPath}/download?action=checkUser&productCode=jr01">
-            Joe Rut - Genuine Wood Grained Finish
-        </a></p>
-    </div>
+<c:if test="${sqlStatement == null}">
+    <c:set var="sqlStatement" value="select * from User"/>
+</c:if>
 
-    <p><a href="${pageContext.request.contextPath}/download?action=viewCookies">View all cookies</a></p>
-</div>
+<h1>The SQL Gateway</h1>
+
+<p>Enter an SQL statement and click the Execute button.</p>
+
+<p><b>SQL statement:</b></p>
+<form action="sqlgateway" method="post">
+    <textarea name="sqlStatement" cols="60" rows="8">${sqlStatement}</textarea>
+    <br>
+    <input type="submit" value="Execute">
+</form>
+
+<p><b>SQL result:</b></p>
+${sqlResult}
+
 </body>
 </html>

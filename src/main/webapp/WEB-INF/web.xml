@@ -5,17 +5,21 @@
                              https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
          version="5.0">
 
+    <!-- Khai báo servlet -->
     <servlet>
-        <servlet-name>DownloadServlet</servlet-name>
-        <servlet-class>murach.minh.DownloadServlet</servlet-class>
+        <servlet-name>SqlGatewayServlet</servlet-name>
+        <servlet-class>murach.minh.SqlGatewayServlet</servlet-class>
     </servlet>
 
+    <!-- Mapping URL tới servlet -->
     <servlet-mapping>
-        <servlet-name>DownloadServlet</servlet-name>
-        <url-pattern>/download</url-pattern>
+        <servlet-name>SqlGatewayServlet</servlet-name>
+        <url-pattern>/sqlgateway</url-pattern>
     </servlet-mapping>
 
+    <!-- Trang mặc định khi vào root -->
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
+
 </web-app>
