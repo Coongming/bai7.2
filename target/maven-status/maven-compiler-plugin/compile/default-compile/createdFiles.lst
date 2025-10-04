@@ -1,4 +1,4 @@
-murach/minh/Product.class
-murach/minh/User.class
-murach/minh/ProductService.class
-murach/minh/DownloadServlet.class
+murach/download/bai9_1/DownloadServlet.class
+murach/download/bai9_1/Product.class
+murach/download/bai9_1/User.class
+murach/download/bai9_1/ProductService.class
