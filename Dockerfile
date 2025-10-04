@@ -15,7 +15,7 @@ FROM tomcat:11.0-jdk21-temurin
 RUN rm -rf /usr/local/tomcat/webapps/*
 
 # Đặt WAR thành ROOT.war để truy cập tại "/"
-COPY --from=build /target/download-app-1.0.0.war /usr/local/tomcat/webapps/ROOT.war
+COPY --from=build /target/download-app-1.0.0.war /Users/vanduccongminh/Downloads/apache-tomcat-11/webapps/ROOT.war
 
 EXPOSE 8080
 CMD ["catalina.sh", "run"]
