@@ -1,4 +1,4 @@
-murach/business/User.class
-murach/download/DownloadServlet.class
-murach/util/CookieUtil.class
-murach/data/UserIO.class
+murach/minh/Product.class
+murach/minh/User.class
+murach/minh/ProductService.class
+murach/minh/DownloadServlet.class

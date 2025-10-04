@@ -1,185 +1,150 @@
-/* ===== Reset và Cài đặt cơ bản ===== */
-:root {
-    --primary-color: #28a745; /* Xanh lá cây chính */
-    --primary-dark: #218838;  /* Xanh lá cây đậm hơn */
-    --background-light: #e6ffe6; /* Nền xanh lá cây nhạt */
-    --background-subtle: #f0fff0; /* Nền xanh lá cây phụ */
-    --text-primary: #212529; /* Màu chữ chính */
-    --text-secondary: #495057; /* Màu chữ phụ */
-    --border-color: #a7d9b9; /* Màu viền xanh lá cây */
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --table-header-bg: #28a745; /* Màu nền header bảng */
-    --table-hover-bg: #d4edda; /* Màu nền hover bảng */
-    --download-msg-bg: #d4edda; /* Nền thông báo tải xuống */
-    --download-msg-text: #155724; /* Chữ thông báo tải xuống */
-    --download-msg-border: #28a745; /* Viền thông báo tải xuống */
-}
-
-* {
-    box-sizing: border-box;
+/* ===== Reset cơ bản ===== */
+body {
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-}
-
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    background-color: #f8fafc;
+    color: #333;
     line-height: 1.6;
-    background-color: var(--background-light);
-    color: var(--text-primary);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
 }
 
-/* ===== Khung Container & Layout ===== */
+/* ===== Khung container ===== */
 .container {
-    max-width: 900px; /* Giới hạn chiều rộng tối đa */
-    margin: 40px auto; /* Canh giữa container */
-    padding: 32px 40px;
+    width: 80%;
+    margin: 30px auto;
+    padding: 20px 30px;
     background-color: #fff;
-    border-radius: 12px;
-    box-shadow: var(--shadow-md);
-    /* Đảm bảo không tràn màn hình nhỏ */
-    width: 90%; 
-    box-sizing: border-box; /* Tính cả padding và border vào width */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border-radius: 8px;
 }
 
-/* ===== Typography (Kiểu chữ) ===== */
+/* ===== Tiêu đề ===== */
 h1 {
-    font-size: 2.25rem;
-    font-weight: 700;
-    color: var(--primary-color);
-    border-bottom: 4px solid var(--primary-color);
-    padding-bottom: 12px;
-    margin-bottom: 24px;
+    color: #2563eb;
+    border-bottom: 3px solid #2563eb;
+    padding-bottom: 8px;
+    margin-top: 0;
 }
 
 h2 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--text-secondary);
-    margin-top: 32px;
-    margin-bottom: 16px;
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: #444;
 }
 
-p {
-    font-size: 1rem;
-    margin-bottom: 16px;
-    color: var(--text-secondary);
+/* ===== Album list ===== */
+.album-list p {
+    margin: 12px 0;
+    font-size: 1.05rem;
 }
 
-/* ===== Link và Nút bấm ===== */
-a {
-    color: var(--primary-color);
+.album-list a {
     text-decoration: none;
-    transition: color 0.3s ease, text-decoration 0.3s ease;
+    color: #2563eb;
+    font-weight: bold;
+    transition: color 0.3s;
 }
 
-a:hover {
-    color: var(--primary-dark);
+.album-list a:hover {
+    color: #1e40af;
     text-decoration: underline;
 }
 
-.button, input[type="submit"] { /* Áp dụng cho cả input submit */
-    display: inline-block;
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    text-align: center;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    text-decoration: none; /* Đảm bảo không có gạch chân cho button */
-}
-
-.button:hover, input[type="submit"]:hover {
-    background-color: var(--primary-dark);
-    transform: translateY(-2px);
-}
-
-/* ===== Form Styling ===== */
+/* ===== Form ===== */
 form {
-    padding: 24px;
-    background-color: var(--background-subtle);
-    border-radius: 8px;
-    box-shadow: var(--shadow-sm);
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f9fafb;
+    border-radius: 6px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
 }
 
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 label {
     display: block;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 8px;
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #333;
 }
 
 input[type="text"],
 input[type="email"] {
     width: 100%;
-    max-width: 400px;
-    padding: 12px;
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
+    max-width: 350px;
+    padding: 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    box-sizing: border-box;
     font-size: 1rem;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-input[type="text"]:focus,
-input[type="email"]:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.2); /* Đổi màu shadow xanh lá */
+input[type="submit"] {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
 }
 
-/* ===== Table Styling ===== */
+input[type="submit"]:hover {
+    background-color: #1e40af;
+}
+
+/* ===== Bảng có kẻ ô ===== */
 table {
     width: 100%;
     border-collapse: collapse;
-    margin: 24px 0;
+    margin: 20px 0;
     font-size: 0.95rem;
-    background-color: #fff;
-    border-radius: 8px;
+    border: 1px solid #d1d5db; /* viền ngoài */
+    border-radius: 6px;
     overflow: hidden;
-    box-shadow: var(--shadow-sm);
 }
 
 th, td {
-    padding: 14px 18px;
+    padding: 12px 14px;
     text-align: left;
-    border-bottom: 1px solid var(--border-color);
+    border: 1px solid #d1d5db; /* kẻ ô */
 }
 
 th {
-    background-color: var(--table-header-bg);
+    background-color: #2563eb;
     color: #fff;
     font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
 }
 
 tr:nth-child(even) {
-    background-color: var(--background-subtle);
+    background-color: #f9fafb;
 }
 
 tr:hover {
-    background-color: var(--table-hover-bg);
+    background-color: #eff6ff;
 }
 
-/* ===== Download Message Box ===== */
+/* ===== Link chung ===== */
+a {
+    color: #2563eb;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ===== Thông báo tải xuống ===== */
 .download-message {
-    background-color: var(--download-msg-bg);
-    color: var(--download-msg-text);
-    padding: 18px;
-    border-radius: 8px;
-    margin: 24px 0;
-    border: 1px solid var(--download-msg-border);
+    background-color: #d1fae5;
+    color: #065f46;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 15px 0;
+    border: 1px solid #34d399;
     text-align: center;
-    font-weight: 600;
-    font-size: 1.1rem;
+    font-weight: bold;
 }
