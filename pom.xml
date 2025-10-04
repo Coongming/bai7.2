@@ -12,16 +12,16 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.release>17</maven.compiler.release>
-    <servlet.version>6.1.0</servlet.version>
-    <jstl.version>3.0.1</jstl.version>
+    <jakarta.servlet.version>6.1.0</jakarta.servlet.version>
+    <jakarta.jstl.version>3.0.1</jakarta.jstl.version>
   </properties>
 
   <dependencies>
-    <!-- Servlet API do Tomcat cung cấp -->
+    <!-- Servlet API (Tomcat sẽ cung cấp, nên để scope=provided) -->
     <dependency>
       <groupId>jakarta.servlet</groupId>
       <artifactId>jakarta.servlet-api</artifactId>
-      <version>${servlet.version}</version>
+      <version>${jakarta.servlet.version}</version>
       <scope>provided</scope>
     </dependency>
 
@@ -29,18 +29,18 @@
     <dependency>
       <groupId>jakarta.servlet.jsp.jstl</groupId>
       <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
-      <version>3.0.1</version>
+      <version>${jakarta.jstl.version}</version>
     </dependency>
     <dependency>
       <groupId>org.glassfish.web</groupId>
       <artifactId>jakarta.servlet.jsp.jstl</artifactId>
-      <version>3.0.1</version>
+      <version>${jakarta.jstl.version}</version>
     </dependency>
-
   </dependencies>
 
   <build>
     <plugins>
+      <!-- Compiler plugin -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -49,6 +49,8 @@
           <release>${maven.compiler.release}</release>
         </configuration>
       </plugin>
+
+      <!-- WAR plugin -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>

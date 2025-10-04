@@ -1,6 +1,9 @@
-package murach.download.bai9_1;
+package murach.minh;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ProductService {
     private final Map<String, Product> products = new HashMap<>();
